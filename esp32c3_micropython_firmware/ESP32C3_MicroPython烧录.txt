@@ -1,0 +1,11 @@
+download
+https://micropython.org/resources/firmware/ESP32_GENERIC_C3-20240222-v1.22.2.bin
+
+
+esptool.py --chip esp32c3 --port /dev/ttyACM0 erase_flash
+esptool.py --chip esp32c3 --port /dev/ttyACM0 --baud 460800 write_flash -z 0x0 ESP32_GENERIC_C3-20240222-v1.22.2.bin
+
+
+
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 erase_flash
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x0 ESP32_GENERIC_C3-20240222-v1.22.2.bin
