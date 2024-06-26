@@ -44,6 +44,14 @@ def main():
             #彩虹效果
             c3lamp.wled0rainbow()
         elif c3lamp.getwled0mode() ==3:
+            c3lamp.wled0setcolor((255,0,0))
+        elif c3lamp.getwled0mode() ==4:
+            c3lamp.wled0setcolor((255,255,0))
+        elif c3lamp.getwled0mode() ==5:
+            c3lamp.wled0setcolor((0,255,0))
+        elif c3lamp.getwled0mode() ==6:
+            c3lamp.wled0setcolor((255,255,255))
+        elif c3lamp.getwled0mode() ==7:
             #关闭
             c3lamp.wled0close()
         time.sleep_ms(10)

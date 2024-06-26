@@ -186,6 +186,9 @@ class C3Lamp:
                 self.np0[j] = (color[0] * i // 256, color[1] * i // 256, color[2] * i // 256)
             self.np0.write()
             time.sleep_ms(delayms)
+    def wled0setcolor(self,color):
+        self.np0.fill(color)
+        self.np0.write()
     def wled0close(self):
         self.np0.fill(BLACK)
         self.np0.write()
@@ -193,7 +196,7 @@ class C3Lamp:
         return self.wled0mode
     def switchmode(self):
         self.wled0mode = self.wled0mode+1
-        if self.wled0mode >3:
+        if self.wled0mode >7:
             self.wled0mode=0
         print("wled0 mode:"+str(self.wled0mode))
     def btnswitch_print_test(self,printstr):
