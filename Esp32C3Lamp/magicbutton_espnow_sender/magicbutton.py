@@ -1,7 +1,7 @@
 # 使用 micropython 面向对象编程的思路来定义硬件
 
 import network
-from machine import Pin,Timer
+from machine import Pin,Timer,ADC
 import time
 
 # micropython 编写的按键动作识别类 按键未按下 、单双三击 长按
@@ -65,6 +65,9 @@ class MagicButton:
         self.led0=Pin(3,Pin.OUT)
         self.led1=Pin(6,Pin.OUT)
         self.btnswitch=Switch(Pin(10, Pin.IN, Pin.PULL_UP))
+        self.poweradc=ADC(Pin(4))
+        self.poweradc.atten(ADC.ATTN_11DB)
+        self.poweradc.width(ADC.WIDTH_12BIT)
         # 按键按下注册函数
         self.btnswitch.short_press_func = lambda: self.btnswitch_print_test("short press")
         self.btnswitch.double_press_func = lambda: self.btnswitch_print_test("double press")
@@ -89,9 +92,17 @@ class MagicButton:
         self.btnswitch.scan()
     def powershutdown(self):
         self.powerpin.value(0)	# 关机
+    def getpowervol(self):
+        vol = self.poweradc.read_uv()
+        vol = vol*2
+        # 将电压值转换为伏特（保留两位小数）
+        vol = vol / 1000000
+        vol = round(vol, 2)
+        return vol
     def autoshutdowntimer(self,tim):
         self.powerstate=self.powerstate+1
         if self.powerstate%10==0:
+            print("current battery vol ：" + str(self.getpowervol()) + "V")
             print(self.powerstate)
         if self.powerstate>60:
             if self.powerstate%10==0:
