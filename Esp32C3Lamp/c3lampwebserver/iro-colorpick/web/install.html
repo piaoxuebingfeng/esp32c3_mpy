@@ -1,0 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+<html>
+
+<body>
+    <div id="picker"></div>
+</body>
+<script type="text/javascript">
+    var colorPicker = new iro.ColorPicker("#picker", {
+    //设置颜色选择器的大小
+    width: 160,
+    //将初始颜色设置为纯红色
+    color: "#f00"
+    });
+    //收听颜色选择器的color:change事件
+    //color:change回调接收当前颜色
+    colorPicker.on('color:change', function(color) {
+    //将当前颜色记录为十六进制字符串
+    console.log(color.hexString);
+    });
+</script>
+</html>
