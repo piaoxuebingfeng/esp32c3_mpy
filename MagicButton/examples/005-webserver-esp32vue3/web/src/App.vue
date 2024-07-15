@@ -55,8 +55,15 @@
             </a-col>
             <a-col offset="1" :span="6">
               <a-card :style="{ width: '100%' }" title="控制">
-                <a-switch checked-color="#14C9C9" unchecked-color="#F53F3F" @change="ledSwitch"
-                          :model-value="ledStatus"/>
+                <a-space direction="vertical" fill>
+                  <a-space>
+                  <a-switch checked-color="#14C9C9" unchecked-color="#F53F3F" @change="ledSwitch"
+                            :model-value="ledStatus"/>
+                  </a-space>
+                  <a-space>
+                    <a-switch checked-color="#FFBB00" unchecked-color="#FFBB00" />
+                </a-space>
+              </a-space>
               </a-card>
             </a-col>
           </a-row>
