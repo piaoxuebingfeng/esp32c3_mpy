@@ -86,14 +86,20 @@ def test(httpClient,httpResponse):
 def test_(httpClient,httpResponse):
   #print(httpClient.ReadRequestContent())
   data=httpClient.ReadRequestContentAsJSON()
-  print(data)
+  #print(data)
   r=int(data['code']['r']/10)
   g=int(data['code']['g']/10)
   b=int(data['code']['b']/10)
   print(r,g,b)
   set_led((r,g,b))
   
-  httpResponse.WriteResponseRedirect('/test/')
+  #httpResponse.WriteResponseRedirect('/test/')
+  httpResponse.WriteResponseOk( headers         = None,
+                            contentType     = "text/plain",
+                            contentCharset  = "UTF-8",
+                            content         = "ok" )
+
+
 
 
 
