@@ -8,9 +8,16 @@ import time
 
 MB = magicbutton.MagicButton(True)
 
-sta = network.WLAN(network.STA_IF)    # Enable station mode for ESP
-sta.active(True)
-sta.disconnect()        # Disconnect from last connected WiFi SSID
+# sta = network.WLAN(network.STA_IF)    # Enable station mode for ESP
+# sta.active(True)
+# sta.disconnect()        # Disconnect from last connected WiFi SSID
+
+# 测试 esp32 的 ap 模式和 espnow 共存
+ap = network.WLAN(network.AP_IF)
+ap.active(True)
+ap.config(essid='magicbutton', authmode=network.AUTH_WPA_WPA2_PSK, password='12345678')
+print(ap.ifconfig())
+
 
 e = espnow.ESPNow()     # Enable ESP-NOW
 e.active(True)
